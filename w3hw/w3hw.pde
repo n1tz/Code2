@@ -1,10 +1,10 @@
 int shape;
-int maxDrops = 100;
-int b2 = 0;
+int maxRockets = 10;
+int b2 = 50;
 
 boolean rectOver = false;
 boolean circleOver = false;
-boolean raining = false;
+boolean fireworks = false;
 
 color c1 = 0;
 color c2 = 255;
@@ -12,7 +12,7 @@ color c2 = 255;
 boolean b2act = false;
 
 
-Drop[] drops = new Drop[maxDrops];
+Rocket[] rockets = new Rocket[maxRockets];
 
 button button1;
 button button2;
@@ -20,24 +20,26 @@ button button2;
 void setup(){
 size(600,600);
 stroke(0);
+
 button1 = new button();
 button2 = new button();
 
-  for (int i = 0; i < drops.length; i++){
-    drops[i] = new Drop();
+  for (int i = 0; i < rockets.length; i++){
+    rockets[i] = new Rocket();
   }
 }
 
 void draw(){
+  background(100,0,200);
 button1.display(width/3,height/2,100,100,true);
 button2.display(width*2/3-50,height/2-50,b2,b2,false);
 
 
 
-for (int i = 0; i < drops.length; i++){
-  if(raining == true){
-    drops[i].fall();
-    drops[i].display();
+for (int i = 0; i < rockets.length; i++){
+  if(fireworks == true){
+    rockets[i].shoot();
+    rockets[i].display();
   }
   }
 
@@ -50,7 +52,7 @@ b2act = true;
 b2 = 100;
 }
 if (button2.hover == true && b2act == true){
-raining = true;
+fireworks = true;
 }
 
 }
@@ -107,24 +109,26 @@ boolean overCircle(int x, int y, int diameter) {
   }
 }
 
-class Drop{
+class Rocket{
   
   float x;
   float y;
   float speed;
   float maxSpeed = 10;
   float minSpeed = 5;
+  float climaxY;
   
-  Drop(){
+  Rocket(){
   x = random(width);
   y = height; 
+  climaxY = random(height/2);
   speed = random(minSpeed,maxSpeed);
   }
   
-  void fall(){
+  void shoot(){
   y = y - speed;
   
-  if(y < 0){
+  if(y <= climaxY){
   y = height;
 
   speed = random(minSpeed,maxSpeed);
