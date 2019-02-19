@@ -18,7 +18,7 @@ void display(int x, int y, int w, int h, boolean circlebutton){
    ellipse(x,y,w,h);
  } else if (circlebutton == false){
    
-   if ( overRect(x, y, w, h) && dragged == false) {
+   if ( overRect(x, y, w, h) && dragged == false && mousePressed == false) {
     fill(c1);
     hover = true;
   }else if(dragRect(x, y, w, h)){
