@@ -17,7 +17,7 @@ location.add(velocity);
 velocity.add(gravity);
 
 if((location.x > width ) || (location.x < 0)){
-  location.x = location.x * 0.99;
+  location.x = location.x * 0.98;
   velocity.x = velocity.x * -1 * friction;
 
 }
